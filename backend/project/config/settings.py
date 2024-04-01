@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # Developed apps
     "api.ping.apps.PingConfig",
     "api.users.apps.UsersConfig",
+    "api.teams.apps.TeamsConfig",
 ]
 
 MIDDLEWARE = [
