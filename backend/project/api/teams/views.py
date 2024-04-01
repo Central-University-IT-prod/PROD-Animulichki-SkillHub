@@ -17,7 +17,7 @@ class AddUserToTeam(APIView):
     def post(self, request, team_id, user_id):  # noqa: ARG002
         try:
             team = Team.objects.get(id=team_id)
-            user = User.objects.get(id=user_id)
+            user = User.objects.get(id=user_id) # noqa
         except Team.DoesNotExist:
             return Response(
                 {"error": "Team not found"}, status=status.HTTP_404_NOT_FOUND
@@ -26,8 +26,6 @@ class AddUserToTeam(APIView):
             return Response(
                 {"error": "User not found"}, status=status.HTTP_404_NOT_FOUND
             )
-
-        team.members.add(user)
         team_serializer = TeamSerializer(team)
         return Response(team_serializer.data, status=status.HTTP_200_OK)
 

@@ -14,11 +14,7 @@ class TeamSerializer(serializers.ModelSerializer):
         if not data.get("count_of_members"):
             msg = "Count of members is required"
             raise serializers.ValidationError(msg)
-        if len(data.get("members")) >= data.get("count_of_members"):
-            msg = "You already have a full team"
-        if len(data.get("members")) + len(data.get("vacancies")) >= data.get(
-            "count_of_members"
-        ):  # noqa
+        if len(data.get("vacancies")) > data.get("count_of_members"):
             msg = "You already have a full team"
             raise serializers.ValidationError(msg)
         if len(data.get("vacancies")) == 0:
